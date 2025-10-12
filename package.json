@@ -1,5 +1,5 @@
 {
-  "name": "ddd-cli",
+  "name": "ddd-cli-tools",
   "version": "1.0.0",
   "description": "A CLI tool to generate DDD entities for a Node.js project.",
   "main": "build/generate.js",

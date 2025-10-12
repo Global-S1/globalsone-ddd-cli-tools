@@ -65,6 +65,24 @@ Generador automatizado de entidades con arquitectura DDD (Domain-Driven Design) 
 
 ## 📖 Uso
 
+### Instalación
+
+```bash
+npm install -g ddd-cli-tools
+```
+
+### Uso Global
+
+```bash
+ddd-cli <EntityName> [options]
+```
+
+### Uso con npx
+
+```bash
+npx ddd-cli-tools <EntityName> [options]
+```
+
 ### Sintaxis Básica
 
 ```bash
@@ -381,16 +399,16 @@ El generador incluye un sistema completo de rollback para revertir entidades gen
 
 ```bash
 # Listar entidades rastreadas
-npm run generate:rollback -- --list
+node build/rollback.js -- --list
 
 # Preview de rollback (dry-run)
-npm run generate:rollback -- product --dry-run
+node build/rollback.js -- product --dry-run
 
 # Rollback real
-npm run generate:rollback -- product
+node build/rollback.js -- product
 
 # Ver ayuda
-npm run generate:rollback -- --help
+node build/rollback.js -- --help
 ```
 
 ### Qué se Elimina
