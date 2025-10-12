@@ -1,0 +1,32 @@
+{
+  "name": "ddd-cli",
+  "version": "1.0.0",
+  "description": "A CLI tool to generate DDD entities for a Node.js project.",
+  "main": "build/generate.js",
+  "bin": {
+    "ddd-cli": "build/generate.js"
+  },
+  "scripts": {
+    "build": "tsc && cp -r src/templates build/templates",
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ddd",
+    "cli",
+    "generator"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "handlebars": "^4.7.8",
+    "pluralize": "^8.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.7.2",
+    "@types/pluralize": "^0.0.33",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
