@@ -83,6 +83,37 @@ ddd-cli <EntityName> [options]
 npx ddd-cli-tools <EntityName> [options]
 ```
 
+### Uso en un Proyecto
+
+#### 1. Instalar como Dependencia de Desarrollo
+
+```bash
+npm install ddd-cli-tools --save-dev
+```
+
+#### 2. Agregar Scripts a `package.json`
+
+Puedes agregar los siguientes scripts a tu archivo `package.json` para facilitar el uso de la herramienta:
+
+```json
+"scripts": {
+  "generate": "ddd-cli",
+  "generate:rollback": "node node_modules/ddd-cli-tools/build/rollback.js"
+}
+```
+
+#### 3. Usar los Scripts
+
+Ahora puedes usar los scripts para generar y revertir entidades:
+
+```bash
+# Generar una entidad
+npm run generate -- User --db=mysql
+
+# Revertir una entidad
+npm run generate:rollback -- user
+```
+
 ### Sintaxis Básica
 
 ```bash
