@@ -1,6 +1,6 @@
-import { DeleteENTITYCAPITALIZE } from "../../../../../../src/entities/ENTITYKEBAB/application/use-cases/delete-ENTITYKEBAB";
-import { IENTITYCAPITALIZERepository } from "../../../../../../src/entities/ENTITYKEBAB/domain/ENTITYKEBAB.repository";
-import { createMockContext } from "../../../../../helpers/mock-context";
+import { DeleteENTITYCAPITALIZE } from "../../../../../src/entities/ENTITYKEBAB/application/use-cases/delete-ENTITYKEBAB";
+import { IENTITYCAPITALIZERepository } from "../../../../../src/entities/ENTITYKEBAB/domain/ENTITYKEBAB.repository";
+import { createMockContext } from "../../../../helpers/mock-context";
 
 describe("DeleteENTITYCAPITALIZE Use Case", () => {
   let useCase: DeleteENTITYCAPITALIZE;
@@ -13,12 +13,12 @@ describe("DeleteENTITYCAPITALIZE Use Case", () => {
       findOneById: jest.fn(),
       update: jest.fn(),
       delete: jest.fn(),
-    } as any;
+    };
 
     const context = createMockContext({
       repositories: {
         ENTITYRepository: mockRepository,
-      } as any,
+      },
     });
 
     useCase = new DeleteENTITYCAPITALIZE(context);

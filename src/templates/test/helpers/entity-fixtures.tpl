@@ -6,6 +6,7 @@ export const createENTITYCAPITALIZEFixture = (
   overrides?: Partial<IENTITYCAPITALIZE>
 ): IENTITYCAPITALIZE => ({
   ENTITYId: "test-ENTITY-id-123",
+  name: "Test ENTITY",
   ...overrides,
 });
 
@@ -13,8 +14,9 @@ export const createENTITYCAPITALIZEDTOFixture = (
   overrides?: Partial<IENTITYCAPITALIZEDTO>
 ): IENTITYCAPITALIZEDTO => ({
   ENTITYId: "test-ENTITY-id-123",
-  insDatetime: "2024-01-01T00:00:00.000Z",
-  updDatetime: "2024-01-01T00:00:00.000Z",
+  name: "Test ENTITY",
+  insDatetime: new Date().toISOString(),
+  updDatetime: new Date().toISOString(),
   delDatetime: "",
   ...overrides,
 });
@@ -22,5 +24,6 @@ export const createENTITYCAPITALIZEDTOFixture = (
 export const createCreateENTITYCAPITALIZEDTOFixture = (
   overrides?: Partial<IENTITYCAPITALIZEBase>
 ): IENTITYCAPITALIZEBase => ({
+  name: "Test ENTITY",
   ...overrides,
 });

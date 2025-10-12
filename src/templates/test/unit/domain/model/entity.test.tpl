@@ -13,16 +13,18 @@ describe("ENTITYCAPITALIZE Domain Model", () => {
 
       expect(ENTITY).toBeInstanceOf(ENTITYCAPITALIZE);
       expect(ENTITY.ENTITYId).toBeUndefined();
+      expect(ENTITY.name).toBe(createDTO.name);
     });
 
     it("should create a ENTITY with custom values", () => {
       const customData = createCreateENTITYCAPITALIZEDTOFixture({
-        // Add custom test values here
+        name: "Custom Name",
       });
 
       const ENTITY = ENTITYCAPITALIZE.create(customData);
 
       expect(ENTITY).toBeDefined();
+      expect(ENTITY.name).toBe("Custom Name");
     });
   });
 
@@ -33,6 +35,7 @@ describe("ENTITYCAPITALIZE Domain Model", () => {
 
       expect(ENTITY.ENTITYId).toBeDefined();
       expect(ENTITY.ENTITYId?.value).toBe(primitiveData.ENTITYId);
+      expect(ENTITY.name).toBe(primitiveData.name);
     });
   });
 
@@ -43,6 +46,7 @@ describe("ENTITYCAPITALIZE Domain Model", () => {
       const result = ENTITY.toPrimitives();
 
       expect(result.ENTITYId).toBe(primitiveData.ENTITYId);
+      expect(result.name).toBe(primitiveData.name);
     });
   });
 
@@ -54,6 +58,7 @@ describe("ENTITYCAPITALIZE Domain Model", () => {
 
       expect(result).toBeDefined();
       expect(result).not.toHaveProperty("ENTITYId");
+      expect(result.name).toBe(createDTO.name);
     });
   });
 
@@ -65,6 +70,7 @@ describe("ENTITYCAPITALIZE Domain Model", () => {
       const result = ENTITY.toDTO(dtoData);
 
       expect(result.ENTITYId).toBe(primitiveData.ENTITYId);
+      expect(result.name).toBe(primitiveData.name);
       expect(result.insDatetime).toBeDefined();
       expect(result.updDatetime).toBeDefined();
     });

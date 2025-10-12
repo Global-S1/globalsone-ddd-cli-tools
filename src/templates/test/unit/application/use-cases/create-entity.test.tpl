@@ -1,7 +1,8 @@
-import { CreateENTITYCAPITALIZE } from "../../../../../../src/entities/ENTITYKEBAB/application/use-cases/create-ENTITYKEBAB";
-import { IENTITYCAPITALIZE } from "../../../../../../src/entities/ENTITYKEBAB/domain/ENTITYKEBAB.repository";
-import { createMockContext } from "../../../../../helpers/mock-context";
-import { createCreateENTITYCAPITALIZEDTOFixture } from "../../../../../helpers/ENTITYKEBAB-fixtures";
+import { CreateENTITYCAPITALIZE } from "../../../../../src/entities/ENTITYKEBAB/application/use-cases/create-ENTITYKEBAB";
+import { IENTITYCAPITALIZERepository } from "../../../../../src/entities/ENTITYKEBAB/domain/ENTITYKEBAB.repository";
+import { createMockContext } from "../../../../helpers/mock-context";
+import { createCreateENTITYCAPITALIZEDTOFixture } from "../../../../helpers/ENTITYKEBAB-fixtures";
+import { ENTITYCAPITALIZE } from "../../../../../src/entities/ENTITYKEBAB/domain/model/ENTITYKEBAB";
 
 describe("CreateENTITYCAPITALIZE Use Case", () => {
   let useCase: CreateENTITYCAPITALIZE;
@@ -14,12 +15,12 @@ describe("CreateENTITYCAPITALIZE Use Case", () => {
       findOneById: jest.fn(),
       update: jest.fn(),
       delete: jest.fn(),
-    } as any;
+    };
 
     const context = createMockContext({
       repositories: {
         ENTITYRepository: mockRepository,
-      } as any,
+      },
     });
 
     useCase = new CreateENTITYCAPITALIZE(context);
@@ -37,7 +38,7 @@ describe("CreateENTITYCAPITALIZE Use Case", () => {
 
     expect(result.item?.insertedId).toBeDefined();
     expect(mockRepository.create).toHaveBeenCalledWith(
-      expect.objectContaining(createDTO)
+      expect.any(ENTITYCAPITALIZE)
     );
   });
 
@@ -49,17 +50,9 @@ describe("CreateENTITYCAPITALIZE Use Case", () => {
     await expect(useCase.execute(createDTO)).rejects.toThrow("Database error");
   });
 
-  it("should validate ENTITY data before creation", async () => {
-    const createDTO = createCreateENTITYCAPITALIZEDTOFixture();
+  it("should throw an error if validation fails", async () => {
+    const createDTO = createCreateENTITYCAPITALIZEDTOFixture({ name: "" }); // Invalid name
 
-    const expectedResult = {
-      item: { insertedId: "some-id" },
-    };
-
-    mockRepository.create.mockResolvedValue(expectedResult as any);
-
-    await useCase.execute(createDTO);
-
-    expect(mockRepository.create).toHaveBeenCalledTimes(1);
+    await expect(useCase.execute(createDTO)).rejects.toThrow();
   });
 });

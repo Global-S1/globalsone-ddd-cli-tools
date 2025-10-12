@@ -1,7 +1,7 @@
-import { FindENTITYCAPITALIZE } from "../../../../../../src/entities/ENTITYKEBAB/application/use-cases/find-ENTITYKEBAB";
-import { IENTITYCAPITALIZERepository } from "../../../../../../src/entities/ENTITYKEBAB/domain/ENTITYKEBAB.repository";
-import { createMockContext } from "../../../../../helpers/mock-context";
-import { createENTITYCAPITALIZEFixture } from "../../../../../helpers/ENTITYKEBAB-fixtures";
+import { FindENTITYCAPITALIZE } from "../../../../../src/entities/ENTITYKEBAB/application/use-cases/find-ENTITYKEBAB";
+import { IENTITYCAPITALIZERepository } from "../../../../../src/entities/ENTITYKEBAB/domain/ENTITYKEBAB.repository";
+import { createMockContext } from "../../../../helpers/mock-context";
+import { createENTITYCAPITALIZEFixture } from "../../../../helpers/ENTITYKEBAB-fixtures";
 
 describe("FindENTITYCAPITALIZE Use Case", () => {
   let useCase: FindENTITYCAPITALIZE;
@@ -14,12 +14,12 @@ describe("FindENTITYCAPITALIZE Use Case", () => {
       findOneById: jest.fn(),
       update: jest.fn(),
       delete: jest.fn(),
-    } as any;
+    };
 
     const context = createMockContext({
       repositories: {
         ENTITYRepository: mockRepository,
-      } as any,
+      },
     });
 
     useCase = new FindENTITYCAPITALIZE(context);
