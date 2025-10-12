@@ -32,6 +32,11 @@ export class FileSystemManager {
     }
   }
 
+  copyFile(sourcePath: string, destinationPath: string): void {
+    const content = fs.readFileSync(sourcePath, "utf-8");
+    this.writeFile(destinationPath, content);
+  }
+
   fileExists(filePath: string): boolean {
     return fs.existsSync(filePath);
   }

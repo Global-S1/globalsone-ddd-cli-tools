@@ -215,6 +215,8 @@ npm run generate -- Order --db=postgres
 
 **Conexión:** `postgresRead`, `postgresWrite`
 
+**Nota:** Al usar la opción `postgres`, el generador creará automáticamente los archivos de configuración básicos en `src/entities/shared/infraestructure/database/postgres`. Debes adaptar estos archivos a tu proyecto.
+
 ## 🔧 Registro Automático
 
 El generador automáticamente:
@@ -466,7 +468,7 @@ Las entidades generadas se rastrean automáticamente en `.generator-tracking.jso
 
 ## 🔮 Próximas Mejoras
 
-- [ ] Soporte para PostgreSQL real (actualmente usa conexión pero falta configuración)
+- [x] ✅ **Soporte para PostgreSQL real** (COMPLETADO)
 - [x] ✅ **Generación automática de tests unitarios** (COMPLETADO)
 - [x] ✅ **Generación de migraciones de base de datos** (COMPLETADO)
 - [x] ✅ **Rollback/clean de entidades generadas** (COMPLETADO)
