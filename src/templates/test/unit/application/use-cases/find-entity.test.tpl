@@ -33,32 +33,32 @@ describe("FindENTITYCAPITALIZE Use Case", () => {
 
     mockRepository.find.mockResolvedValue({
       items: mockENTITIES,
-      total: 2,
+      pagination: { totalItems: 2 },
     } as any);
 
-    const result = await useCase.execute({ page: 1, limit: 10 });
+    const result = await useCase.execute({ page: 1, size: 10, sortBy: "" });
 
     expect(result.items).toHaveLength(2);
-    expect(result.total).toBe(2);
+    expect(result.pagination?totalItems).toBe(2);
     expect(mockRepository.find).toHaveBeenCalledWith({ page: 1, limit: 10 });
   });
 
   it("should return empty array when no ENTITIES found", async () => {
     mockRepository.find.mockResolvedValue({
       items: [],
-      total: 0,
+      pagination: { totalItems: 2 },
     } as any);
 
-    const result = await useCase.execute({ page: 1, limit: 10 });
+    const result = await useCase.execute({ page: 1, size: 10, sortBy: "" });
 
     expect(result.items).toHaveLength(0);
-    expect(result.total).toBe(0);
+    expect(result.pagination?totalItems).toBe(0);
   });
 
   it("should handle repository errors", async () => {
     mockRepository.find.mockRejectedValue(new Error("Database error"));
 
-    await expect(useCase.execute({ page: 1, limit: 10 })).rejects.toThrow(
+    await expect(useCase.execute({ page: 1, size: 10, sortBy: "" })).rejects.toThrow(
       "Database error"
     );
   });

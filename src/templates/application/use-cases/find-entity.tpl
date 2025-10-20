@@ -4,7 +4,6 @@ import {
   IDBDataItemRequired,
 } from "../../../shared/domain/interfaces/db-response.interface";
 import { IPaginationQuery } from "../../../shared/domain/interfaces/pagination-query.interface";
-import { IFind } from "../../../shared/domain/interfaces/find.interface";
 import { errorHandler } from "../../../shared/domain/error/error-handler";
 import { IENTITYCAPITALIZEDTO } from "../../domain/interfaces/dto/ENTITYKEBAB-dto.interface";
 import { IENTITYCAPITALIZE } from "../../domain/interfaces/ENTITYKEBAB.interface";
@@ -19,11 +18,11 @@ export class FindENTITYCAPITALIZE {
   }
 
   async findByFilters(
-    filters?: IFind<IENTITYCAPITALIZE>,
+    filters?: Partial<IENTITYCAPITALIZE>,
     pagination?: IPaginationQuery
   ): Promise<IDBDataItemsRequired<IENTITYCAPITALIZEDTO>> {
     try {
-      return await this.ENTITYRepository.find(filters, pagination);
+      return await this.ENTITYRepository.find({ criteria: filters, pagination });
     } catch (error) {
       throw errorHandler(error);
     }

@@ -10,10 +10,10 @@ describe("DeleteENTITYCAPITALIZE Use Case", () => {
     mockRepository = {
       create: jest.fn(),
       find: jest.fn(),
-      findOneById: jest.fn(),
+      findByUuid: jest.fn(),
       update: jest.fn(),
-      delete: jest.fn(),
-    };
+      deleteByUuid: jest.fn(),
+    } as any;
 
     const context = createMockContext({
       repositories: {
@@ -30,18 +30,18 @@ describe("DeleteENTITYCAPITALIZE Use Case", () => {
       item: { affectedRows: 1 },
     };
 
-    mockRepository.delete.mockResolvedValue(expectedResult as any);
+    mockRepository.deleteByUuid.mockResolvedValue(expectedResult as any);
 
     const result = await useCase.execute(ENTITYId);
 
     expect(result.item?.affectedRows).toBe(1);
-    expect(mockRepository.delete).toHaveBeenCalledWith(ENTITYId);
+    expect(mockRepository.deleteByUuid).toHaveBeenCalledWith(ENTITYId);
   });
 
   it("should handle repository errors", async () => {
     const ENTITYId = "test-id-123";
 
-    mockRepository.delete.mockRejectedValue(new Error("Database error"));
+    mockRepository.deleteByUuid.mockRejectedValue(new Error("Database error"));
 
     await expect(useCase.execute(ENTITYId)).rejects.toThrow("Database error");
   });
@@ -49,7 +49,7 @@ describe("DeleteENTITYCAPITALIZE Use Case", () => {
   it("should handle non-existent ENTITY", async () => {
     const ENTITYId = "non-existent-id";
 
-    mockRepository.delete.mockResolvedValue({
+    mockRepository.deleteByUuid.mockResolvedValue({
       item: { affectedRows: 0 },
     } as any);
 
