@@ -11,21 +11,13 @@ class ENTITYCAPITALIZERouter extends RouterBase<ENTITYCAPITALIZEController> {
   routes(): void {
     this.router
       .route("/")
-      .get(this.controller.listENTITIESCAPITALIZE.bind(this.controller));
-    this.router
-      .route("/:ENTITYId")
-      .get(this.controller.findENTITYCAPITALIZEById.bind(this.controller));
-
-    this.router
-      .route("/")
+      .get(this.controller.listENTITIESCAPITALIZE.bind(this.controller))
       .post(this.controller.createENTITYCAPITALIZE.bind(this.controller));
 
     this.router
       .route("/:ENTITYId")
-      .patch(this.controller.updateENTITYCAPITALIZE.bind(this.controller));
-
-    this.router
-      .route("/:ENTITYId")
+      .get(this.controller.findENTITYCAPITALIZEById.bind(this.controller))
+      .patch(this.controller.updateENTITYCAPITALIZE.bind(this.controller))
       .delete(this.controller.deleteENTITYCAPITALIZE.bind(this.controller));
   }
 }
