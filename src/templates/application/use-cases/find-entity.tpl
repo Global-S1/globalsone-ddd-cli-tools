@@ -10,11 +10,11 @@ import { IENTITYCAPITALIZE } from "../../domain/interfaces/ENTITYKEBAB.interface
 import { IENTITYCAPITALIZERepository } from "../../domain/ENTITYKEBAB.repository";
 
 export class FindENTITYCAPITALIZE {
-  private readonly ENTITYRepository: IENTITYCAPITALIZERepository;
+  private readonly ENTITYLOWERRepository: IENTITYCAPITALIZERepository;
 
   constructor(private readonly context: IAppContext) {
-    this.ENTITYRepository =
-      this.context.repositories.ENTITYRepository;
+    this.ENTITYLOWERRepository =
+      this.context.repositories.ENTITYCAPITALIZERepository;
   }
 
   async findByFilters(
@@ -22,17 +22,17 @@ export class FindENTITYCAPITALIZE {
     pagination?: IPaginationQuery
   ): Promise<IDBDataItemsRequired<IENTITYCAPITALIZEDTO>> {
     try {
-      return await this.ENTITYRepository.find({ criteria: filters, pagination });
+      return await this.ENTITYLOWERRepository.find({ criteria: filters, pagination });
     } catch (error) {
       throw errorHandler(error);
     }
   }
 
   async findById(
-    ENTITYId: string
+    ENTITYLOWERId: string
   ): Promise<IDBDataItemRequired<IENTITYCAPITALIZEDTO>> {
     try {
-      return await this.ENTITYRepository.findByUuid(ENTITYId);
+      return await this.ENTITYLOWERRepository.findByUuid(ENTITYLOWERId);
     } catch (error) {
       throw errorHandler(error);
     }

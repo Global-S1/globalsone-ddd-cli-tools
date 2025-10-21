@@ -2,25 +2,25 @@ import { IAppContext } from "../../../shared/domain/app-context/app-context.inte
 import { IDBDataItemRequired } from "../../../shared/domain/interfaces/db-response.interface";
 import { insertedId } from "../../../shared/domain/interfaces/repository-base.interface";
 import { errorHandler } from "../../../shared/domain/error/error-handler";
-import { IENTITYCAPITALIZEBase } from "../../domain/interfaces/ENTITYKEBAB-base.interface";
 import { IENTITYCAPITALIZERepository } from "../../domain/ENTITYKEBAB.repository";
 import { ENTITYCAPITALIZE } from "../../domain/model/ENTITYKEBAB";
+import { IENTITYCAPITALIZE } from "../../domain/interfaces/ENTITYKEBAB.interface";
 
 export class CreateENTITYCAPITALIZE {
-  private readonly ENTITYRepository: IENTITYCAPITALIZERepository;
+  private readonly ENTITYLOWERRepository: IENTITYCAPITALIZERepository;
 
   constructor(private readonly context: IAppContext) {
-    this.ENTITYRepository =
-      this.context.repositories.ENTITYRepository;
+    this.ENTITYLOWERRepository =
+      this.context.repositories.ENTITYCAPITALIZERepository;
   }
 
   async execute(
-    data: IENTITYCAPITALIZEBase
+    data: IENTITYCAPITALIZE
   ): Promise<IDBDataItemRequired<insertedId>> {
     try {
-      const product = ENTITYCAPITALIZE.create(data);
+      const ENTITYLOWER = ENTITYCAPITALIZE.create(data);
 
-      return await this.ENTITYRepository.create(product.toPrimitives());
+      return await this.ENTITYLOWERRepository.create(ENTITYLOWER.toPrimitives());
     } catch (error) {
       throw errorHandler(error);
     }

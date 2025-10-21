@@ -6,19 +6,19 @@ import { IENTITYCAPITALIZEBase } from "../../domain/interfaces/ENTITYKEBAB-base.
 import { IENTITYCAPITALIZERepository } from "../../domain/ENTITYKEBAB.repository";
 
 export class UpdateENTITYCAPITALIZE {
-  private readonly ENTITYRepository: IENTITYCAPITALIZERepository;
+  private readonly ENTITYLOWERRepository: IENTITYCAPITALIZERepository;
 
   constructor(private readonly context: IAppContext) {
-    this.ENTITYRepository =
-      this.context.repositories.ENTITYRepository;
+    this.ENTITYLOWERRepository =
+      this.context.repositories.ENTITYCAPITALIZERepository;
   }
 
   async execute(
-    ENTITYId: string,
+    ENTITYLOWERId: string,
     data: Partial<IENTITYCAPITALIZEBase>
   ): Promise<IDBDataItemRequired<modifiedCount>> {
     try {
-      return await this.ENTITYRepository.update(ENTITYId, data);
+      return await this.ENTITYLOWERRepository.update(ENTITYLOWERId, data);
     } catch (error) {
       throw errorHandler(error);
     }
