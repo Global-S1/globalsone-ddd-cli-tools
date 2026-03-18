@@ -1,5 +1,8 @@
 # Entity Generator CLI
 
+[![npm version](https://img.shields.io/npm/v/ddd-cli-tools.svg)](https://www.npmjs.com/package/ddd-cli-tools)
+[![tests](https://img.shields.io/badge/tests-107%20passing-brightgreen.svg)]()
+
 Generador automatizado de entidades con arquitectura DDD (Domain-Driven Design) para el microservicio.
 
 ## 🚀 Características
@@ -327,7 +330,7 @@ El generador crea automáticamente una suite completa de tests unitarios:
 ### Fixtures (`test/helpers/{entity}-fixtures.ts`)
 ```typescript
 export const createProductFixture = (overrides?: Partial<IProduct>): IProduct => ({
-  productId: "test-id-123",
+  productUuid: "test-uuid-123",
   // ... valores por defecto
   ...overrides,
 });
@@ -365,7 +368,7 @@ El generador puede crear automáticamente archivos de migración listos para usa
 // migrations/20241009120000_create_products_table.ts
 export async function up(knex: Knex): Promise<void> {
   return knex.schema.createTable("products", (table) => {
-    table.string("productId", 36).primary().notNullable();
+    table.string("productUuid", 36).primary().notNullable();
 
     // Agregar campos personalizados aquí
 
@@ -374,7 +377,7 @@ export async function up(knex: Knex): Promise<void> {
     table.timestamp("delDatetime").nullable();
 
     // Índices
-    table.index(["productId"], "idx_products_id");
+    table.index(["productUuid"], "idx_products_uuid");
     table.index(["delDatetime"], "idx_products_deleted");
   });
 }
@@ -392,10 +395,10 @@ export const ProductsCollectionSchema = {
   validator: {
     $jsonSchema: {
       bsonType: "object",
-      required: ["productId", "insDatetime", "updDatetime"],
+      required: ["productUuid", "insDatetime", "updDatetime"],
       properties: {
         _id: { bsonType: "objectId" },
-        productId: { bsonType: "string" },
+        productUuid: { bsonType: "string" },
         // Campos personalizados
         insDatetime: { bsonType: "date" },
         updDatetime: { bsonType: "date" },
@@ -527,14 +530,37 @@ npm run build
 ### La ruta no se registra automáticamente
 Las rutas se cargan dinámicamente desde `src/api/routes-config/index.ts`. No requieren registro manual.
 
+## 🧪 Tests del CLI
+
+El CLI incluye una suite completa de tests unitarios:
+
+```bash
+# Ejecutar tests
+npm test
+
+# Watch mode
+npm run test:watch
+
+# Con cobertura
+npm run test:coverage
+```
+
+**Cobertura:** 107 tests en 5 suites
+- `string-transformers` - Transformaciones de strings (PascalCase, camelCase, kebab-case)
+- `validators` - Validación de nombres y opciones
+- `cli-parser` - Parsing de argumentos CLI
+- `file-system` - Operaciones de archivos
+- `entity-tracker` - Sistema de tracking para rollback
+
 ## 🤝 Contribuir
 
 Para agregar nuevas features al generador:
 
-1. Modifica los módulos en `cli-tools/generator/utils/`
+1. Modifica los módulos en `src/utils/`
 2. Actualiza `entity-generator.ts` si es necesario
-3. Agrega tests unitarios (cuando estén disponibles)
-4. Actualiza este README
+3. Agrega tests unitarios en `test/`
+4. Ejecuta `npm test` para verificar
+5. Actualiza este README
 
 ## 📄 Licencia
 
