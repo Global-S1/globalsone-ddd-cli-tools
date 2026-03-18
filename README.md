@@ -2,8 +2,11 @@
 
 [![npm version](https://img.shields.io/npm/v/ddd-cli-tools.svg)](https://www.npmjs.com/package/ddd-cli-tools)
 [![tests](https://img.shields.io/badge/tests-107%20passing-brightgreen.svg)]()
+[![GitHub stars](https://img.shields.io/github/stars/Global-S1/globalsone-ddd-cli-tools?style=social)](https://github.com/Global-S1/globalsone-ddd-cli-tools)
 
 Generador automatizado de entidades con arquitectura DDD (Domain-Driven Design) para el microservicio.
+
+> **Si este proyecto te resulta útil, considera darle una estrella en [GitHub](https://github.com/Global-S1/globalsone-ddd-cli-tools). Tu apoyo nos motiva a seguir mejorándolo.**
 
 ## 🚀 Características
 
