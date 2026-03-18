@@ -24,6 +24,10 @@ class FileSystemManager {
             fs_1.default.writeFileSync(filePath, content);
         }
     }
+    copyFile(sourcePath, destinationPath) {
+        const content = fs_1.default.readFileSync(sourcePath, "utf-8");
+        this.writeFile(destinationPath, content);
+    }
     fileExists(filePath) {
         return fs_1.default.existsSync(filePath);
     }

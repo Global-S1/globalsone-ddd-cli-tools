@@ -53,6 +53,9 @@ class EntityGenerator {
         if (generateMigrations) {
             this.generateMigrations(migrationsBasePath, entityPlural, replacements, database);
         }
+        if (database === "postgres" || database === "postgresql") {
+            this.generatePostgresConfig(basePath);
+        }
         // Auto-register repository if infrastructure layer is enabled
         if (layers.infrastructure && !this.options.dryRun) {
             this.codeInjector.injectRepositoryRegistration({
@@ -167,6 +170,16 @@ class EntityGenerator {
         // Replace timestamp placeholder
         content = content.replace(/\{\{timestamp\}\}/g, new Date().toISOString());
         this.fileManager.writeFile(outputPath, content);
+    }
+    generatePostgresConfig(basePath) {
+        const postgresConfigPath = path_1.default.join(basePath, "src", "entities", "shared", "infraestructure", "database", "postgres");
+        this.fileManager.createDirectory(postgresConfigPath);
+        const postgresTemplatePath = path_1.default.join(__dirname, "../templates/postgres-config/postgres.ts.tpl");
+        const postgresOutputPath = path_1.default.join(postgresConfigPath, "postgres.ts");
+        this.fileManager.copyFile(postgresTemplatePath, postgresOutputPath);
+        const commonRepositoryTemplatePath = path_1.default.join(__dirname, "../templates/postgres-config/common.repository.ts.tpl");
+        const commonRepositoryOutputPath = path_1.default.join(basePath, "src", "entities", "shared", "infraestructure", "database", "sql", "common.repository.ts");
+        this.fileManager.copyFile(commonRepositoryTemplatePath, commonRepositoryOutputPath);
     }
     printSummary(entityName, entityKebab) {
         if (this.options.dryRun) {
