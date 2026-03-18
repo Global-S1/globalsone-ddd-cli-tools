@@ -1,4 +1,5 @@
 import { IAppContext } from "../../shared/domain/app-context/app-context.interface";
+import { IFind } from "../../shared/domain/interfaces/find.interface";
 import { IPaginationQuery } from "../../shared/domain/interfaces/pagination-query.interface";
 import { IENTITYCAPITALIZEBase } from "../domain/interfaces/ENTITYKEBAB-base.interface";
 import { IENTITYCAPITALIZE } from "../domain/interfaces/ENTITYKEBAB.interface";
@@ -21,7 +22,7 @@ export class ENTITYCAPITALIZEUseCases {
   }
 
   findENTITYCAPITALIZE(
-    filters?: Partial<IENTITYCAPITALIZE>,
+    filters?: IFind<IENTITYCAPITALIZE>,
     pagination?: IPaginationQuery
   ) {
     return this.findENTITYCAPITALIZEUseCase.findByFilters(filters, pagination);

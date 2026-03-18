@@ -21,7 +21,7 @@ export class ENTITYCAPITALIZERepository
       dbWrite,
       tableName: "ENTITY",
       entityName: "ENTITY",
-      primaryKey: "ENTITYId",
+      primaryKey: "ENTITYUuid",
       tableSchema: ENTITYCAPITALIZESchema,
       dto: ENTITYCAPITALIZE,
     });

@@ -5,18 +5,18 @@ import { errorHandler } from "../../../shared/domain/error/error-handler";
 import { IENTITYCAPITALIZERepository } from "../../domain/ENTITYKEBAB.repository";
 
 export class DeleteENTITYCAPITALIZE {
-  private readonly ENTITYLOWERRepository: IENTITYCAPITALIZERepository;
+  private readonly ENTITYRepository: IENTITYCAPITALIZERepository;
 
   constructor(private readonly context: IAppContext) {
-    this.ENTITYLOWERRepository =
-      this.context.repositories.ENTITYCAPITALIZERepository;
+    this.ENTITYRepository =
+      this.context.repositories.ENTITYRepository;
   }
 
   async execute(
-    ENTITYLOWERId: string
+    ENTITYId: string
   ): Promise<IDBDataItemRequired<modifiedCount>> {
     try {
-      return await this.ENTITYLOWERRepository.deleteByUuid(ENTITYLOWERId);
+      return await this.ENTITYRepository.deleteByUuid(ENTITYId);
     } catch (error) {
       throw errorHandler(error);
     }
